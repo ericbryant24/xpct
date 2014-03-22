@@ -42,7 +42,7 @@ Code Contracts in JavaScript
 #####After xpct:
 
     function(order) {
-      return xpct().toBeDef('order.customer.address.addressLine1')
+      return xpct().toBeHaveProp(order, 'customer.address.addressLine1')
         .fail('')
         .pass(order.customer.address.addressLine1);
     }
@@ -60,7 +60,7 @@ Code Contracts in JavaScript
 #####After xpct:
 
     function getCustomerFirstName(order) {
-      return xpct().toBeDef([order, order.customer])
+      return xpct().toAllBeDef([order, order.customer])
         .fail('')
         .pass(order.customer.firstName)
     }

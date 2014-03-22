@@ -28,7 +28,25 @@ Code Contracts in JavaScript
            .toBeDef(last, 'Last name must be defined')
       return first + middle + last;
     }
+
+#####Before xpct:
+
+    function(order) {
+      if(order && order.customer && order.customer.address) {
+        return order.customer.address.addressLine1;
+      } else {
+        return '';
+      }
+    }
     
+#####After xpct:
+
+    function(order) {
+      return xpct().toBeDef('order.customer.address.addressLine1')
+        .fail('')
+        .pass(order.customer.address.addressLine1);
+    }
+
 #####Before xpct:
 
     function getCustomerFirstName(order) {
@@ -42,8 +60,9 @@ Code Contracts in JavaScript
 #####After xpct:
 
     function getCustomerFirstName(order) {
-      return xpct().toBeDef([order, order.customer]).orReturn('')
-        .ret(order.customer.firstName)
+      return xpct().toBeDef([order, order.customer])
+        .fail('')
+        .pass(order.customer.firstName)
     }
       
 #####Before xpct:
@@ -69,8 +88,8 @@ Code Contracts in JavaScript
     function getSoldOrders() {
       var orders = service.getAllOrders();
      
-      return xpct().toBeArray(orders).orReturn([])
-        .go(function() {
+      return xpct().toBeArray(orders).fail([])
+        .pass(function() {
           var soldOrders = [];
           for(var i = 0; i < orders.length(); i++) {
             if(orders[i].sold) {

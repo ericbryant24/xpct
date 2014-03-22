@@ -3,7 +3,7 @@ xpct
 
 Code Contracts in JavaScript
 
-####Ensure correctness and catch those pesky null refs with xpct!
+####Ensure correctness and avoid those pesky null refs with xpct!
 
 #####Before xpct:
 

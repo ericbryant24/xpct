@@ -29,7 +29,7 @@ Code Contracts in JavaScript
       return first + middle + last;
     }
     
-#####Before xpct
+#####Before xpct:
 
     function getCustomerFirstName(order) {
       if(order && order.customer) {
@@ -39,14 +39,14 @@ Code Contracts in JavaScript
       }
     }
     
-#####After xpct
+#####After xpct:
 
     function getCustomerFirstName(order) {
       return xpct().toBeDef([order, order.customer]).orReturn('')
         .ret(order.customer.firstName)
     }
       
-#####Before xpct
+#####Before xpct:
 
     function getSoldOrders() {
       var orders = service.getAllOrders();
@@ -64,7 +64,7 @@ Code Contracts in JavaScript
       }
     }
     
-#####After xpct
+#####After xpct:
 
     function getSoldOrders() {
       var orders = service.getAllOrders();

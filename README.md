@@ -1,11 +1,11 @@
-xpt
+xpct
 ===
 
 Code Contracts in JavaScript
 
-####Ensure correctness and catch those pesky null refs with xpt!
+####Ensure correctness and catch those pesky null refs with xpct!
 
-#####Before xpt:
+#####Before xpct:
 
     function printName(first, middle, last) {
       if(!first) {
@@ -20,16 +20,16 @@ Code Contracts in JavaScript
       return first + middle + last;
     }
     
-#####After xpt:
+#####After xpct:
 
     function printName(first, middle, last) {
-      xpt().toBeDef(first, 'First name must be defined')
+      xpct().toBeDef(first, 'First name must be defined')
            .toBeDef(middle, 'Middle name must be defined')
            .toBeDef(last, 'Last name must be defined')
       return first + middle + last;
     }
     
-#####Before xpt
+#####Before xpct
 
     function getCustomerFirstName(order) {
       if(order && order.customer) {
@@ -39,14 +39,14 @@ Code Contracts in JavaScript
       }
     }
     
-####After xpt
+#####After xpct
 
     function getCustomerFirstName(order) {
-      return xpt().toBeDef([order, order.customer]).orReturn('')
+      return xpct().toBeDef([order, order.customer]).orReturn('')
         .ret(order.customer.firstName)
     }
       
-#####Before xpt
+#####Before xpct
 
     function getSoldOrders() {
       var orders = service.getAllOrders();
@@ -64,12 +64,12 @@ Code Contracts in JavaScript
       }
     }
     
-####After xpt
+#####After xpct
 
     function getSoldOrders() {
       var orders = service.getAllOrders();
      
-      return xpt().toBeArray(orders).orReturn([])
+      return xpct().toBeArray(orders).orReturn([])
         .go(function() {
           var soldOrders = [];
           for(var i = 0; i < orders.length(); i++) {
